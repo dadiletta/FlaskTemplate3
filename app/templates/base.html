@@ -1,0 +1,55 @@
+{# ------------------ BASE! ---------------- #}
+{# pretty much every page will use this stuff #}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  {# check out the templates/shared/_head.html to see CSS and head includes #}
+  {% include "shared/_head.html" %}
+  <body id="page-top" class="appear-animate">
+       
+    <!-- Page Loader -->        
+    <div class="page-loader">
+      <div class="loader">Loading...</div>
+    </div>
+    <!-- End Page Loader -->
+
+    <!-- Skip to Content -->
+    <a href="#main" class="btn skip-to-content">Skip to Content</a>
+    <!-- End Skip to Content -->
+
+    <!-- Page Wrap -->
+    <div class="page" id="top">
+
+        {% if not disable_navbar %}
+          {% include "shared/_nav.html" with context %}
+        {% endif%}
+        
+        <main id="main">  
+        {% block content %}
+        {% endblock %}
+        </main>
+
+    
+
+        {% include "shared/_footer.html" with context %}
+    </div>
+    {% block btt %}
+		<!-- Scroll to top button -->
+		<div class="scrolltotop icon-lg">
+			<a class="button-circle button-circle-md button-circle-dark" href="#"><i class="bi bi-arrow-up-short"></i></a>
+		</div>
+		<!-- end Scroll to top button -->
+    {% endblock %}
+
+    {# You can put modals pretty much anywhere, but some folks find it tidy to keep them out of the content block #}
+    {% block modals %}{% endblock %}
+
+    {# LOAD UP ALL YOUR THEME'S JS HERE #}
+    {% include "shared/_js.html" with context %}
+
+    {# A convenient block so you can drop in your own template-specific JS code #}
+    {% block tail %}{% endblock %}
+
+  </body>
+</html>        
